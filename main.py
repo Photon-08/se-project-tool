@@ -15,7 +15,7 @@ embed_model = 'sentence-transformers/static-similarity-mrl-multilingual-v1'
 
 
 def main():
-    st.logo("/Users/photon08/Documents/se_plagarism_checker/IIT_Madras_Logo.svg.png",  size="large")
+    st.logo("IIT_Madras_Logo.svg.png",  size="large")
     st.set_page_config(page_title="Software Engineering Project Similarity Analysis", page_icon=":mag_right:", layout="wide")
 
 
