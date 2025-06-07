@@ -48,7 +48,7 @@ def main():
             #st.success(f"ZIP file extracted to folder: {extract_folder}")
 
 
-            pdf_list = [i for i in os.listdir("eextracted_files") if i.endswith('.pdf')]
+            pdf_list = [i for i in os.listdir("extracted_files") if i.endswith('.pdf')]
             sorted_pdf_list = sorted(pdf_list)
 
 
