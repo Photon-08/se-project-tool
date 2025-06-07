@@ -87,6 +87,7 @@ def main():
                     file_name="similarity_report.pdf",
                     mime="application/pdf"
                 )
+                st.success("Analysis completed successfully!")
 
 
 
