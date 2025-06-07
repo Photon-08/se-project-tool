@@ -66,6 +66,7 @@ def main():
                 tfidf_similarity_dict = calculate_tfidf_similarity(team_embed_dict_tfidf)
                 composite_similarity_dict = calculate_composite_similarity(context_aware_similarity_dict, tfidf_similarity_dict)
                 #st.success("Similarity calculations completed successfully!")
+                st.write(composite_similarity_dict)
                 
                 
                 
