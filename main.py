@@ -48,7 +48,7 @@ def main():
             #st.success(f"ZIP file extracted to folder: {extract_folder}")
 
 
-            pdf_list = [i for i in os.listdir("extracted_files/data") if i.endswith('.pdf')]
+            pdf_list = [i for i in os.listdir("eextracted_files") if i.endswith('.pdf')]
             sorted_pdf_list = sorted(pdf_list)
 
 
@@ -56,8 +56,8 @@ def main():
             with st.spinner(text="In progress...", show_time=True):
 
 
-                team_embed_dict_context = create_embeddings_context_aware([os.path.join("extracted_files/data", pdf) for pdf in sorted_pdf_list], embed_model=embed_model)
-                team_embed_dict_tfidf = create_tfidf_embeddings([os.path.join("extracted_files/data", pdf) for pdf in sorted_pdf_list])
+                team_embed_dict_context = create_embeddings_context_aware([os.path.join("extracted_files", pdf) for pdf in sorted_pdf_list], embed_model=embed_model)
+                team_embed_dict_tfidf = create_tfidf_embeddings([os.path.join("extracted_files", pdf) for pdf in sorted_pdf_list])
                 #st.success("Embeddings created successfully!") 
 
                 
