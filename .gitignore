@@ -5,6 +5,7 @@
 
 # Ignore all PDF files
 *.pdf
+__pycache__/
 
 # Ignore everything inside extracted_files/ and its subfolders
 extracted_files/
