@@ -48,7 +48,7 @@ def main():
             #st.success(f"ZIP file extracted to folder: {extract_folder}")
 
 
-            pdf_list = [i for i in os.listdir("eextracted_files") if i.endswith('.pdf')]
+            pdf_list = [i for i in os.listdir("extracted_files") if i.endswith('.pdf')]
             sorted_pdf_list = sorted(pdf_list)
 
 
@@ -72,7 +72,10 @@ def main():
 
                 
                 # Create and save the similarity report
-                report_path = "similarity_report.pdf"
+                output_dir = "."
+                os.makedirs(output_dir, exist_ok=True)
+                report_path = os.path.join(output_dir, "similarity_report.pdf")
+
                 save_similarity_report(composite_similarity_dict, report_path,
                                     )
                 
