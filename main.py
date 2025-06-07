@@ -76,13 +76,14 @@ def main():
                 os.makedirs(output_dir, exist_ok=True)
                 report_path = os.path.join(output_dir, "similarity_report.pdf")
 
-                save_similarity_report(composite_similarity_dict, report_path,
+                buffer = save_similarity_report(composite_similarity_dict, report_path,
                                     )
                 print(os.listdir("."))
                 st.success("Similarity report created successfully!")
                 st.download_button(
                     label="Download Similarity Report",
-                    data=open(report_path, "rb").read(),
+                    #data=open(report_path, "rb").read(),
+                    data=buffer.getvalue(),
                     file_name="similarity_report.pdf",
                     mime="application/pdf"
                 )
