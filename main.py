@@ -78,7 +78,7 @@ def main():
 
                 save_similarity_report(composite_similarity_dict, report_path,
                                     )
-                
+                print(os.listdir("."))
                 st.success("Similarity report created successfully!")
                 st.download_button(
                     label="Download Similarity Report",
