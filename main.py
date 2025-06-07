@@ -83,7 +83,7 @@ def main():
                 st.download_button(
                     label="Download Similarity Report",
                     #data=open(report_path, "rb").read(),
-                    data=buffer.getvalue(),
+                    data=buffer,
                     file_name="similarity_report.pdf",
                     mime="application/pdf"
                 )
