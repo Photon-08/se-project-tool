@@ -68,7 +68,7 @@ def save_similarity_report(similarity_dict, output_path):
     elements.append(Paragraph("Software Engineering Project Similarity Report", title_style))
     elements.append(Paragraph("June 2025", subtitle_style))
     elements.append(Paragraph("IIT Madras - BS Degree", institute_style))
-    elements.append(Paragraph("Generated using hybrid similarity engine (semantic + lexical)", footer_style))
+    elements.append(Paragraph("Generated using a hybrid similarity engine (semantic + lexical + paraphrasing-aware techniques)", footer_style))
 
     # === Table Section Header ===
     elements.append(Paragraph("Top 20 Project Submission Pairs with Highest Detected Similarity", section_header_style))
