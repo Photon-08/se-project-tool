@@ -1,6 +1,3 @@
-Of course. Here is the professional GitHub repo README file in Markdown format.
-
------
 
 # Software Project Similarity Analyzer
 
