@@ -13,7 +13,7 @@ def create_vocab():
             text += page.get_text()
         return text
 
-    pdf_folder = "extracted_files/data 2"
+    pdf_folder = "extracted_files"
     all_texts = []
 
     for filename in os.listdir(pdf_folder):
