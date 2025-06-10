@@ -1,7 +1,7 @@
 # Software Engineering Project Similarity Analyzer - PlagTrace
 
 [![Python Version](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/release/python-3100/)
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://streamlit.io)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://plagtrace.streamlit.app/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A sophisticated tool designed to analyze and identify similarities in academic documents, specifically tailored for software engineering project reports. This application leverages a hybrid approach, combining semantic and lexical analysis with paraphrasing detection to provide a robust similarity score, helping educators and auditors detect potential plagiarism or unauthorized collaboration.
