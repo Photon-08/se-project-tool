@@ -5,9 +5,10 @@ import os
 from sentence_transformers import SentenceTransformer
 from embed import load_and_chunk_multiple_pdfs_faster
 from tfidf_embed import embed_using_tfidf  # Uncomment if you want to use the TF-IDF embedding function
-from create_embeddings import create_embeddings_context_aware, create_tfidf_embeddings
-from calculate_similarity import calculate_similarity, calculate_tfidf_similarity, calculate_composite_similarity
+from create_embeddings import create_embeddings_context_aware, create_tfidf_embeddings, create_embeddings_paraphrase_aware
+from calculate_similarity import calculate_similarity, calculate_tfidf_similarity, calculate_composite_similarity, calculate_similarity_paraphrase
 from create_report import save_similarity_report
+import time
 #os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
 
 embed_model = 'sentence-transformers/static-similarity-mrl-multilingual-v1'
@@ -50,6 +51,7 @@ def main():
 
             pdf_list = [i for i in os.listdir("extracted_files") if i.endswith('.pdf')]
             sorted_pdf_list = sorted(pdf_list)
+            print("Sorted PDF List:", sorted_pdf_list)
 
 
             # using high-level embedding function
@@ -58,13 +60,23 @@ def main():
 
                 team_embed_dict_context = create_embeddings_context_aware([os.path.join("extracted_files", pdf) for pdf in sorted_pdf_list], embed_model=embed_model)
                 team_embed_dict_tfidf = create_tfidf_embeddings([os.path.join("extracted_files", pdf) for pdf in sorted_pdf_list])
+                team_embed_dict_paraphrase = create_embeddings_paraphrase_aware([os.path.join("extracted_files", pdf) for pdf in sorted_pdf_list])
                 #st.success("Embeddings created successfully!") 
 
                 
                 
                 context_aware_similarity_dict = calculate_similarity(team_embed_dict_context, embed_model=embed_model)
                 tfidf_similarity_dict = calculate_tfidf_similarity(team_embed_dict_tfidf)
-                composite_similarity_dict = calculate_composite_similarity(context_aware_similarity_dict, tfidf_similarity_dict)
+                paraphrased_similarity_dict = calculate_similarity_paraphrase(team_embed_dict_paraphrase)
+                composite_similarity_dict = calculate_composite_similarity(context_aware_similarity_dict, tfidf_similarity_dict, paraphrased_similarity_dict)
+                
+                print("#########################################")
+                print(composite_similarity_dict)
+                print(tfidf_similarity_dict)
+                print(context_aware_similarity_dict)
+                print(paraphrased_similarity_dict)
+                print("#########################################")
+
                 #st.success("Similarity calculations completed successfully!")
                 
                 
@@ -72,21 +84,44 @@ def main():
 
                 
                 # Create and save the similarity report
-                output_dir = "."
-                os.makedirs(output_dir, exist_ok=True)
-                report_path = os.path.join(output_dir, "similarity_report.pdf")
-
-                buffer = save_similarity_report(composite_similarity_dict, report_path,
-                                    )
+                #output_dir = "."
+                #os.makedirs(output_dir, exist_ok=True)
+                #report_path = os.path.join(output_dir, "similarity_report_final.pdf")
+                """
+                report_path = "similarity_report_final.pdf"
+                save_similarity_report(composite_similarity_dict, report_path)
                 print(os.listdir("."))
                 st.success("Similarity report created successfully!")
                 st.download_button(
                     label="Download Similarity Report",
-                    #data=open(report_path, "rb").read(),
-                    data=buffer,
-                    file_name="similarity_report.pdf",
+                    data=open(report_path, "rb").read(),
+                    #data=buffer,
+                    
+                    file_name="similarity_report_final.pdf",
                     mime="application/pdf"
                 )
+                """
+                report_path = "similarity_report_final.pdf"
+
+                # --- Logic to trigger the report generation ---
+                # This could be a button or any other Streamlit widget
+                #if st.button("Generate Similarity Report"):
+                # 1. Generate and save the report
+                save_similarity_report(composite_similarity_dict, report_path)
+                #print(os.listdir(".")) # For debugging: check if the file was created
+                st.success("Similarity report created successfully!")
+
+
+                # --- Logic to display the download button ---
+                # 2. Check if the report file exists before showing the download button
+                if os.path.exists(report_path):
+                    with open(report_path, "rb") as file:
+                        btn = st.download_button(
+                            label="Download Similarity Report",
+                            data=file,  # Pass the file object directly
+                            file_name="similarity_report_final.pdf",
+                            mime="application/pdf"
+                        )
                 st.success("Analysis completed successfully!")
 
 
