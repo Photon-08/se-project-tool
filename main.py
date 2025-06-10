@@ -78,6 +78,7 @@ def main():
                 print("#########################################")
 
                 #st.success("Similarity calculations completed successfully!")
+                st.write(composite_similarity_dict)
                 
                 
                 
@@ -87,20 +88,7 @@ def main():
                 #output_dir = "."
                 #os.makedirs(output_dir, exist_ok=True)
                 #report_path = os.path.join(output_dir, "similarity_report_final.pdf")
-                """
-                report_path = "similarity_report_final.pdf"
-                save_similarity_report(composite_similarity_dict, report_path)
-                print(os.listdir("."))
-                st.success("Similarity report created successfully!")
-                st.download_button(
-                    label="Download Similarity Report",
-                    data=open(report_path, "rb").read(),
-                    #data=buffer,
-                    
-                    file_name="similarity_report_final.pdf",
-                    mime="application/pdf"
-                )
-                """
+                
                 report_path = "similarity_report_final.pdf"
 
                 # --- Logic to trigger the report generation ---
