@@ -15,9 +15,11 @@ def calculate_similarity(embeddings_dict, embed_model='sentence-transformers/sta
                         embeddings_dict[other_team] = embeddings_dict[other_team].unsqueeze(0)
                     try:
                         similarity = model.similarity(embeddings_dict[current_team], embeddings_dict[other_team])
+                        similarity_dict[team_string] = round(float(similarity[0]), 2)
                     except:
                         similarity = -1.00000
-                    similarity_dict[team_string] = round(float(similarity[0]), 2)
+                        similarity_dict[team_string] = round(float(similarity), 2)
+                    
 
     return similarity_dict
 def calculate_tfidf_similarity(tfidf_embeddings_dict):
@@ -45,9 +47,10 @@ def calculate_similarity_paraphrase(embeddings_dict, embed_model='sentence-trans
                 if team_string not in similarity_dict and f"Team {other_team} and Team {current_team}" not in similarity_dict:
                     try:
                         similarity = model.similarity(embeddings_dict[current_team], embeddings_dict[other_team])
+                        similarity_dict[team_string] = round(float(similarity[0]), 2)
                     except:
                         similarity = -1.00000
-                    similarity_dict[team_string] = round(float(similarity[0]), 2)
+                        similarity_dict[team_string] = round(float(similarity), 2)
 
     return similarity_dict
 
