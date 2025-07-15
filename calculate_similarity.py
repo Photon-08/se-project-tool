@@ -13,7 +13,10 @@ def calculate_similarity(embeddings_dict, embed_model='sentence-transformers/sta
                         embeddings_dict[current_team] = embeddings_dict[current_team].unsqueeze(0)
                     if len(embeddings_dict[other_team].shape) == 1:
                         embeddings_dict[other_team] = embeddings_dict[other_team].unsqueeze(0)
-                    similarity = model.similarity(embeddings_dict[current_team], embeddings_dict[other_team])
+                    try:
+                        similarity = model.similarity(embeddings_dict[current_team], embeddings_dict[other_team])
+                    except:
+                        similarity = -1
                     similarity_dict[team_string] = round(float(similarity[0]), 2)
 
     return similarity_dict
@@ -40,7 +43,10 @@ def calculate_similarity_paraphrase(embeddings_dict, embed_model='sentence-trans
             if current_team != other_team:
                 team_string = f"Team {current_team} and Team {other_team}"
                 if team_string not in similarity_dict and f"Team {other_team} and Team {current_team}" not in similarity_dict:
-                    similarity = model.similarity(embeddings_dict[current_team], embeddings_dict[other_team])
+                    try:
+                        similarity = model.similarity(embeddings_dict[current_team], embeddings_dict[other_team])
+                    except:
+                        similarity = -1
                     similarity_dict[team_string] = round(float(similarity[0]), 2)
 
     return similarity_dict
