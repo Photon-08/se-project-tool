@@ -18,7 +18,7 @@ def create_embeddings_context_aware(pdf_paths, embed_model='sentence-transformer
         try:
             team_name = os.path.basename(pdf).split(".pdf")[0].split(" ")[1]
         except:
-            team_name = os.path.basename(pdf).split(".pdf")[0].split("")[1]
+            team_name = os.path.basename(pdf).split(".pdf")[0]
             
         embeddings[team_name] = load_and_chunk_multiple_pdfs_faster(pdf, model=model)
 
