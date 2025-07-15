@@ -16,7 +16,7 @@ def calculate_similarity(embeddings_dict, embed_model='sentence-transformers/sta
                     try:
                         similarity = model.similarity(embeddings_dict[current_team], embeddings_dict[other_team])
                     except:
-                        similarity = -1
+                        similarity = -1.0
                     similarity_dict[team_string] = round(float(similarity[0]), 2)
 
     return similarity_dict
@@ -46,7 +46,7 @@ def calculate_similarity_paraphrase(embeddings_dict, embed_model='sentence-trans
                     try:
                         similarity = model.similarity(embeddings_dict[current_team], embeddings_dict[other_team])
                     except:
-                        similarity = -1
+                        similarity = -1.0
                     similarity_dict[team_string] = round(float(similarity[0]), 2)
 
     return similarity_dict
