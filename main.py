@@ -10,6 +10,7 @@ from calculate_similarity import calculate_similarity, calculate_tfidf_similarit
 from create_report import save_similarity_report
 import time
 #os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
+#
 
 embed_model = 'sentence-transformers/static-similarity-mrl-multilingual-v1'
 
